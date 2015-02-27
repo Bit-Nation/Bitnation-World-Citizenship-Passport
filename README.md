@@ -46,13 +46,21 @@ Basic Design
 Will start with keybase.io as the infrastructure.   Basic features of keybase.io that are useful to us include;
 
 a)    Set up a new user (albeit it requires an invitation)
+
 b)    Generate a public/private key pair
+
 c)    Store the private key for the user
+
 d)    Encrypt and sign messages
+
 e)    Decrypt messages and check signatures
+
 f)    Search for and retrieve the public details of other users
+
 g)    link their public/private key pair to various social accounts
+
 h)    ‘Track’ someone - ie sign a copy of their identity details so that 
+
 
 
 Proof of concept tests
