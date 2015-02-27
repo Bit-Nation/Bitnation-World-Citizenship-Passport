@@ -1,0 +1,17 @@
+.avatar {
+	width:100px;
+	height:100px;
+}
+
+.inhead {
+	padding-left:15px;
+}
+
+.indented {
+	margin-left:15px;
+}
+
+.bigtext{
+	font-size : 24px;
+	padding-left: 20px;
+}

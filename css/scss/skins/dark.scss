@@ -1,0 +1,67 @@
+html {
+	background: transparent url(../../../img/bgs/back-orange.png) repeat-x 0 0;
+	min-height: 100%;
+	background-size: 100% 100%;
+
+	&.small {
+		background-size: auto !important;
+	}
+}
+body {
+	background: none;
+
+	&.menu {
+		#sidebar-nav {
+			background: transparent url(../../../img/bgs/back-orange.png) repeat-x 0 0;
+			background-size: 100% 100%;
+			box-shadow: none;
+		}
+	}
+}
+.navbar-inverse {
+	background: none;
+	border: 1px solid transparent;
+	box-shadow: none;
+
+	.notification-dropdown .count {
+		background: rgb(252, 130, 123);
+	}
+}
+
+
+/* sidebar */
+#sidebar-nav {
+	#dashboard-menu {
+		> li.active > a, 
+		> li > a:hover {
+			color: #fff;
+			text-shadow: none;
+		}
+		> li > a {
+			color: rgb(190, 190, 190);
+			box-shadow: none;
+			border: 0px;
+		}
+		a i {
+			opacity: 0.6;
+
+			&.icon-chevron-down {
+				color: #fff;
+			}
+		}
+		ul.submenu {
+			border-bottom: 0px;
+			box-shadow: 0 2px 1px -1px rgb(75, 101, 136);
+
+			a {
+				text-shadow: none;
+				color: rgb(211, 211, 211);
+			}
+		}
+	}
+}
+
+.content {
+	box-shadow: none;
+}
+
