@@ -217,8 +217,90 @@
                 <span class="icon"></span><span class="text">Dark skin</span>
             </a>
         </div>
+
+        <div id="user-list" class="users-list pad-wrapper">
+            <div class="row header">
+                <h3>Users</h3>
+                <div class="col-md-10 col-sm-12 col-xs-12 pull-right">
+                    <input id="usersearch" type="text" class="col-md-5 search" placeholder="Type a user's name...">
+
+                    <!-- custom popup filter -->
+                    <!-- styles are located in css/elements.css -->
+                    <!-- script that enables this dropdown is located in js/theme.js -->
+                    <div class="ui-dropdown">
+                        <div class="head" data-toggle="tooltip" title="Click me!">
+                            Filter users
+                            <i class="arrow-down"></i>
+                        </div>
+                        <div class="dialog">
+                            <div class="pointer">
+                                <div class="arrow"></div>
+                                <div class="arrow_border"></div>
+                            </div>
+                            <div class="body">
+                                <p class="title">
+                                    Show users where:
+                                </p>
+                                <div class="form">
+                                    <select>
+                                        <option>Name</option>
+                                        <option>Email</option>
+                                        <option>Number of orders</option>
+                                        <option>Signed up</option>
+                                        <option>Last seen</option>
+                                    </select>
+                                    <select>
+                                        <option>is equal to</option>
+                                        <option>is not equal to</option>
+                                        <option>is greater than</option>
+                                        <option>starts with</option>
+                                        <option>contains</option>
+                                    </select>
+                                    <input type="text" class="form-control" />
+                                    <a class="btn-flat small">Add filter</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="new-user.html" class="btn-flat success pull-right">
+                        <span>&#43;</span>
+                        NEW USER
+                    </a>
+                </div>
+            </div>
+
+            <!-- Users table -->
+            <div class="row">
+                <div id="autocomplete" class="col-md-12">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th class="sortable">
+                                Identity
+                            </th>
+                            <th class=" sortable">
+                                <span class="line"></span>Full Name
+                            </th>
+                            <th class="sortable">
+                                <span class="line"></span>Twitter
+                            </th>
+                            <th class="sortable align-right">
+                                <span class="line"></span>Fingerprint
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- end users table -->
+        </div>
         
-        <div id="pad-wrapper" class="user-profile">
+        <div id="user-profile" class="user-profile pad-wrapper">
             <!-- header -->
             <div class="row header">
                 <div class="col-md-8">

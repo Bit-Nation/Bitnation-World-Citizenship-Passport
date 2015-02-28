@@ -3,6 +3,11 @@
 	height:100px;
 }
 
+.small-avatar {
+    width:50px;
+    height:50px;
+}
+
 .inhead {
 	padding-left:15px;
 }
@@ -14,4 +19,18 @@
 .bigtext{
 	font-size : 24px;
 	padding-left: 20px;
+}
+
+.pad-wrapper {
+    margin-top: 55px;
+    padding: 0 50px;
+}
+
+#user-list .ui-dropdown {
+    padding-top:8px;
+    padding-left:15px;
+}
+
+#user-list .name {
+    padding-left:15px;
 }
