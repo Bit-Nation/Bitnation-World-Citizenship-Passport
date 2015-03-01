@@ -19,6 +19,38 @@ $(document).ready(function ()
         }, 500);
     });
 
+    $(document).on('click','.idname', function(){
+        get_lookup('username='+$(this).attr('id'));
+        $('#user-list').hide();
+        $('#user-profile').show();
+    });
+
+    $('.menu').on('click',function(){
+        switch($(this).attr('id')){
+
+            case 'menu_home':
+                $('#user-list').show();
+                $('#user-profile').hide();
+                break;
+
+            case 'menu_citizenlist':
+                break;
+
+            case 'menu_citizenform':
+                break;
+
+            case 'menu_citizenprofile':
+                break;
+
+            case 'menu_encrypt':
+                break;
+
+            case 'menu_decrypt':
+                break;
+
+        }
+    })
+
 
 });
 
@@ -38,7 +70,7 @@ function get_autocomplete(queryString){
         document.dataCache['data']=data;
 
         var autohtml='';
-        autohtml+='<table class="table table-hover">'+
+        autohtml+='<table class="table table-hover" id="idtable">'+
         '<thead>'+
         '<tr>'+
         '<th class="sortable">'+
@@ -81,8 +113,8 @@ function get_autocomplete(queryString){
                 var fingerprints=fingerprint.split(/(....)/).filter(String)
                 fingerprint=fingerprints[0]+' '+fingerprints[1]+' '+fingerprints[2]+' '+fingerprints[3]+' '+'<i class="fa icon-key ">';
             }
-            autohtml+='<tr><td><img src="'+picurl+'" alt="contact" class="img-circle small-avatar hidden-phone" />';
-            autohtml+='<a href="user-profile.html" class="name">'+identity.components.username.val+'</a></td>';
+            autohtml+='<tr class="idrow" ><td><img src="'+picurl+'" alt="contact" class="img-circle small-avatar hidden-phone" />';
+            autohtml+='<a href="#" class="idname" id="'+identity.components.username.val+'">'+identity.components.username.val+'</a></td>';
             autohtml+='<td>'+fullname+'</td> ' +
             '<td>'+twitter+'</td> ' +
             '<td class="align-right"> '+fingerprint+' </td> </tr>'
@@ -103,15 +135,15 @@ function get_lookup(queryString){
 
         document.dataCache['data']=data;
 
-        $('.name').html(document.dataCache['data'].them[0].profile.full_name);
-        $('.identity').html(document.dataCache['data'].them[0].id);
-        $('.avatar').attr("src",document.dataCache['data'].them[0].pictures.primary.url);
-        $('.biopara').html(document.dataCache['data'].them[0].profile.bio);
+        $('.name').html(document.dataCache['data'].them.profile.full_name);
+        $('.identity').html(document.dataCache['data'].them.id);
+        $('.avatar').attr("src",document.dataCache['data'].them.pictures.primary.url);
+        $('.biopara').html(document.dataCache['data'].them.profile.bio);
 
 
         var proofhtml='';
         proofhtml+='<table>';
-        var obj=document.dataCache['data'].them[0].proofs_summary.all;
+        var obj=document.dataCache['data'].them.proofs_summary.all;
         $.each( obj, function( index, proof ) {
             var icon="";
             if (proof.proof_type=='twitter'){
