@@ -51,7 +51,6 @@ $(document).ready(function ()
         }
     })
 
-
 });
 
 var typewatch = (function(){
@@ -143,8 +142,18 @@ function get_lookup(queryString){
 
         var proofhtml='';
         proofhtml+='<table>';
+
+        var dochtml='';
+        dochtml='<table class="table table-hover indented"> <thead> ' +
+        '<tr> <th class="col-md-2">Type </th> ' +
+        '<th class="col-md-3"> <span class="line"></span>Detail </th> ' +
+        '<th class="col-md-3"> <span class="line"></span>Proof </th> </tr> ' +
+        '</thead> <tbody>';
+
         var obj=document.dataCache['data'].them.proofs_summary.all;
+
         $.each( obj, function( index, proof ) {
+
             var icon="";
             if (proof.proof_type=='twitter'){
                 icon='<i class="fa fa-2x fa-twitter "></i>';
@@ -158,11 +167,20 @@ function get_lookup(queryString){
             if (proof.proof_type=='coinbase'){
                 icon='<i class="fa fa-2x fa-bitcoin "></i>';
             }
-            proofhtml+="<tr><td>"+icon+"</td><td class='bigtext'>"+proof.proof_type+"</td></tr>"
+
+            if (proof.proof_type=='generic_web_site'){
+                icon='<i class="fa fa-2x fa-globe "></i>';
+            }
+            proofhtml+="<tr><td>"+icon+"</td><td class='bigtext'><a target='_blank' href='"+proof.service_url+"'>"+proof.nametag+"</a></td></tr>";
+
+            dochtml+="<tr><td>Social Proof</td><td>"+proof.presentation_group+"</td><td><a target='_blank' href='"+proof.human_url+"'>"+proof.presentation_tag+"</a></td></tr>";
+
         });
-        proofhtml+="</table>"
+        proofhtml+="</table>";
+        dochtml+="</tbody></table>";
 
         $('.identity').html(proofhtml);
+        $('#documentlist').html(dochtml);
 
     });
 }
