@@ -51,6 +51,13 @@ $(document).ready(function ()
         }
     })
 
+   $('.loginbtn').on('click',function(){
+        var username=document.dataCache.data.them.basics.username;
+        $('#username').html(username);
+        //get_salt('email_or_username='+username+"&csrf_token="+document.dataCache.data.csrf_token);
+        get_salt('email_or_username='+username,document.dataCache.data.csrf_token);
+    })
+
 });
 
 var typewatch = (function(){
@@ -60,6 +67,51 @@ var typewatch = (function(){
         timer = setTimeout(callback, ms);
     };
 })();
+
+
+function get_salt(queryString,xsrf){
+
+    /*$.get('https://keybase.io/_/api/1.0/getsalt.json?' + queryString, function(data){
+        document.dataCache['salt'] = data;
+        var a=0;
+    });*/
+
+    $.ajax({
+        data:{requrl:'https://keybase.io/_/api/1.0/getsalt.json?'+queryString+'&csrf_token='+xsrf},
+        url:"php/proxy.php",
+        dataType:"json",
+        async:false,
+        success:function(data) {
+            document.dataCache['salt'] = data;
+            $('#salt').html(data.salt);
+
+            var scrypt = scrypt_module_factory();
+            var pwh=scrypt.crypto_scrypt(scrypt.encode_utf8("pleaseletmein"),
+                scrypt.encode_utf8(data.salt),
+                Math.pow(2,15), 8, 1, 224);
+            //pwh = scrypt.crypto_scrypt('passphrase', scrypt.hex2bin(data.salt), N=2^15, r=8, p=1, dkLen=224);
+            alert(scrypt.to_hex(pwh));
+        },
+        error:function(xhr, ajaxOptions, thrownError) {
+           //alert(xhr.statusText);
+        }
+    });
+
+    /*$.ajax({
+        url:'https://keybase.io/_/api/1.0/getsalt.json?'+queryString,
+        headers:{ "X-CSRF-Token" : xsrf },
+        dataType:"jsonp",
+        async:false,
+        success:function(data) {
+            document.dataCache['salt'] = data;
+            $('#salt').html(data.salt);
+        },
+        error:function(xhr, ajaxOptions, thrownError) {
+            alert(xhr.statusText);
+        }
+    });*/
+
+}
 
 function get_autocomplete(queryString){
 
@@ -121,7 +173,6 @@ function get_autocomplete(queryString){
         autohtml+="</tbody></table>"
 
         $('#autocomplete').html(autohtml);
-
 
     });
 }
